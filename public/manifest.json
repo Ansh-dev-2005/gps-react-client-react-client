@@ -1,0 +1,32 @@
+{
+  "short_name": "UPES Bus",
+  "name": "UPES Bus",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/login",
+  "display": "standalone",
+  "theme_color": "#9376F4",
+  "background_color": "#9376F4",
+  "orientation": "portrait"
+}
