@@ -1,9 +1,12 @@
 require('dotenv').config()
 require('log-timestamp')
-
+const cors = require('cors'); // Make sure this is correctly imported
 const express = require('express')
 const mongoose = require('mongoose')
 const { getRequestData } = require('./middlewares/logger')
+
+// use cors
+
 
 
 const authRoutes = require('./routes/auth')
@@ -19,7 +22,12 @@ const DATABASE = process.env.DATABASE || ""
 
 
 const app = express()
-
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(express.json())
 app.use(getRequestData)
 
