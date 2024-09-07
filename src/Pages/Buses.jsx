@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BaseTwo from "../Components/Base/BaseTwo";
 import BusCard from "../Components/Bus/BusCard";
 import { PlusIcon } from "@heroicons/react/24/solid"; // Import Heroicons
 import BackButton from "../Components/BackButton/BackButton";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getAllSightings } from "../Helpers";
 
 const Buses = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null) ;
 
   const navigate = useNavigate();
 
-  const data = {
-    _id: "1",
-    routeName: "Dimapur - Kohima",
-    vehicleRegistration: "NL-01-1234",
-    startPoint: "Dimapur",
-    endPoint: "Kohima",
-  };
+  useEffect(() => {
+    // call getAllSightings function
+    // if success setData
+    // if error setError
+
+    setData(getAllSightings());
+    setLoading(false);
+  }
+  , []);
+  
+
 
 
   const handleAddBus = () => {

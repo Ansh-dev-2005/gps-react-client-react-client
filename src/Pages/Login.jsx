@@ -30,13 +30,13 @@ const Login = () => {
         e.preventDefault()
         setLoading(true)
         try {
-            const login = await signIn({ 
-                email: email, 
-                password: password 
-            })
+            const login = await signIn({
+              emailAddress: email,
+              password: password,
+            });
             if(login.success) {
                 localStorage.setItem('user', JSON.stringify(login.dbRes))
-                localStorage.setItem('token', login.token)
+                document.cookie = `refreshToken=${login.refreshToken}`
                 return navigate('/home')
             }else {
                 setError(true)
