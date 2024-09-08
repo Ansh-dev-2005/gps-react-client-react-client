@@ -69,7 +69,7 @@ const Form = () => {
 
       if (response.success) {
         alert("Sighting created successfully!");
-        navigate("/sightings"); // Use navigate to redirect
+        navigate("/home"); // Use navigate to redirect
       } else {
         alert("Failed to create sighting");
       }

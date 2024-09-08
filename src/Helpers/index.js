@@ -183,3 +183,19 @@ export const createSighting = async (body) => {
 
     return json
 }
+
+
+export const getSight = async (id) => {
+    let res = await fetch(`${URL}/sight/id/${id}`,  {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAccessToken()}`
+        },
+        credentials: 'include',
+        method: "GET",
+    })
+    let json = await res.json()
+    return json
+}
+

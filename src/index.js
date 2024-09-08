@@ -9,6 +9,7 @@ import Form from "./Pages/Form";
 import Signup from "./Pages/Signup";
 import { messaging, onMessage } from "./firebaseConfig";
 import { requestPermission } from "./services/notificationService";
+import Sight from "./Pages/Sight";
 
 const Home = React.lazy(() => import("./Pages/Home"));
 const Login = React.lazy(() => import("./Pages/Login"));
@@ -105,6 +106,14 @@ const App = () => {
               element={
                 <Suspense fallback={<Loader />}>
                   <Form />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/sight"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Sight />
                 </Suspense>
               }
             />
