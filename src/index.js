@@ -12,12 +12,9 @@ import { requestPermission } from "./services/notificationService";
 
 const Home = React.lazy(() => import("./Pages/Home"));
 const Login = React.lazy(() => import("./Pages/Login"));
-const Dashboard = React.lazy(() => import("./Pages/Dashboard"));
 const Feedback = React.lazy(() => import("./Pages/Feedback"));
 const Profile = React.lazy(() => import("./Pages/Profile"));
-const Buses = React.lazy(() => import("./Pages/Buses"));
-const Location = React.lazy(() => import("./Pages/Location"));
-const Locations = React.lazy(() => import("./Pages/Locations"));
+const Sights = React.lazy(() => import("./Pages/Sights"));
 
 const App = () => {
   useEffect(() => {
@@ -83,15 +80,7 @@ const App = () => {
               path="/home"
               element={
                 <Suspense fallback={<Loader />}>
-                  <Dashboard />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/elephants"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Buses />
+                  <Sights />
                 </Suspense>
               }
             />
@@ -108,22 +97,6 @@ const App = () => {
               element={
                 <Suspense fallback={<Loader />}>
                   <Feedback />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/location"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Location />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/locations"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Locations />
                 </Suspense>
               }
             />

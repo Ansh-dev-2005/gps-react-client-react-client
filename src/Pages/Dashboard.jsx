@@ -1,12 +1,13 @@
 import React from "react";
 import BaseTwo from "../Components/Base/BaseTwo";
 import DosDonts from "../Components/DashboardDosDonts/DosDonts";
+import { getUser } from "../Helpers";
 
 const Header = () => {
   return (
     <div className="mt-10">
       <h2 className="text-white text-2xl">
-        Namaste, <strong>Bhupender</strong>
+        Namaste, <strong></strong>
       </h2>
       <p className="text-white text-sm pt-1">Hope you are having a nice day!</p>
     </div>

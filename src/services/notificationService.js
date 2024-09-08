@@ -1,37 +1,32 @@
-import { getToken } from "firebase/messaging";
-import { messaging } from "../firebaseConfig";
-import { updateUser } from "../Helpers";
+import { getMessaging, getToken } from "firebase/messaging"
+import { messaging } from "../firebaseConfig"
+import { getAccessToken, updateUser } from "../Helpers"
+
+export const requestForToken = async () => {
+  try {
+    const fcmToken = await getToken(messaging, { vapidKey: "BJFNcl-f7y_Rai-3MkrNQdU-r57Jt5uumh-VvUycd8ueu_c_c2grx1ne32ym5GaJHIcnZyUSaVBd_btCW2AHxLc"})    
+    return fcmToken
+  }catch(err) {
+    return err
+  }
+}
 
 export const requestPermission = async () => {
   try {
-    console.log("Requesting permission...");
-        const permission = await Notification.requestPermission();
+      console.log("Requesting permission...")
+      const permission = await Notification.requestPermission()
+      if (permission === "granted" && getAccessToken()) {
+          const fcmToken = await requestForToken()
+          
+          const update = await updateUser({ fcmToken: fcmToken})
 
-if (permission === "granted") {
-      
-    const token = await getToken(messaging, {
-      vapidKey: "BJFNcl-f7y_Rai-3MkrNQdU-r57Jt5uumh-VvUycd8ueu_c_c2grx1ne32ym5GaJHIcnZyUSaVBd_btCW2AHxLc", // Replace with your public VAPID key
-    });
-    if (token) {
-      console.log("FCM Token:", token);
-      // Optionally, send the token to your server or save it
-      const User = JSON.parse(localStorage.getItem("user"));
-
-      // append the token to the user object
-
-
-      const response = await updateUser({
-        fcmToken: token,
-      });
-      if (response.success) {
-        console.log("FCM token saved successfully.");
+          console.log(update)
+      } else {
+        console.log("Error")
       }
-
-    } else {
-      console.log("No registration token available.");
+    }catch(err) {
+      console.error("Error getting token", err)
     }
-  } }catch (error) {
-    console.error("Error getting token", error);
-  }
   
-};
+  
+}

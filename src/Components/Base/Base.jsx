@@ -9,6 +9,7 @@ const Base = (props) => {
     const menuItems = [
         { title: 'Home', href: '/', active: location.pathname === '/' ? true : false },
         { title: 'Login', href: '/login', active: location.pathname === '/login' ? true : false },
+        { title: 'Signup', href: '/signup', active: location.pathname === '/signup' ? true : false },
         { title: 'Privacy Policy', href: '/privacy-policy', active: location.pathname === '/privacy-policy' ? true : false },
         { title: 'Terms & Conditions', href: '/terms-and-conditions', active: location.pathname === '/terms-and-conditions' ? true : false }
     ]

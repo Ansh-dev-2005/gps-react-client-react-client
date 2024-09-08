@@ -42,7 +42,7 @@ const Form = () => {
           setUseCurrentLocation(true);
           setFormData({
             ...formData,
-            gpsCoordinates: `${latitude},${longitude}`,
+            gpsCoordinates: JSON.stringify(currentLocation),
           });
         },
         (error) => {
