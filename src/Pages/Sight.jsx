@@ -9,7 +9,7 @@ import Map from '../Components/Maps/MapComponentone';
 const Sight = () => {
     const [params, setParams] = useSearchParams();
     const [data, setData] = useState(null);
-    const [selectedLocation, setSelectedLocation] = useState();
+    const [selectedLocation, setSelectedLocation] = useState([0,0]);
 
     const navigate = useNavigate();
 
@@ -24,11 +24,11 @@ const Sight = () => {
       
       getSight(id).then((data) => {
         setData(data);
-  const [latitude, longitude] = data.dbRes.gpsCoordinates.split(",");
-  setSelectedLocation({
-    lat: parseFloat(latitude),
-    lng: parseFloat(longitude),
-  });
+        const coo = JSON.parse(data.dbRes.gpsCoordinates)
+        setSelectedLocation({
+          lat: parseFloat(coo.lat),
+          lng: parseFloat(coo.lng),
+        });
         console.log(data.dbRes);
       });
 
@@ -38,22 +38,21 @@ const Sight = () => {
 
   return (
     <BaseTwo
-      header={<BackButton title={data ? "All Buses" : "Loading..."} />}
+      header={<BackButton title={data ? "Sight" : "Loading..."} />}
       style="bg-white rounded-t-2xl"
     >
       {data ? (
         <div className="flex flex-col items-start p-5">
           <div className="flex flex-col items-start p-5">
             <h1 className="text-3xl font-semibold text-black">
-              Sighted At: {data.dbRes.remarks}
+              Remarks: {data.dbRes.remarks}
             </h1>
-            <h1 className="text-xl font-medium text-black">
-              <Map
-                location={selectedLocation}
+            <div className="w-full h-[70vh]">
+            <Map
+                location={selectedLocation ? selectedLocation : [0, 0]}
               />
-            </h1>
+            </div>
             <p className="text-sm font-normal text-black">
-              {data.dbRes.description}
             </p>
           </div>
         </div>

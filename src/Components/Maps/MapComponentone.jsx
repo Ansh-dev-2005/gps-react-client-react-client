@@ -15,11 +15,11 @@ const Map = ({ location }) => {
   return (
     <GoogleMap
       zoom={14}
-      center={location} // Center the map on the provided location
-      mapContainerStyle={{ width: "100%", height: "400px" }} // Adjust the size as needed
+      center={location ? location : [0, 0]} // Center the map on the provided location
+      mapContainerStyle={{ width: "100%", height: "600px" }} // Adjust the size as needed
     >
       {/* Add a marker at the location */}
-      <Marker position={location} />
+      {location ? <Marker position={location} /> : '' }
     </GoogleMap>
   );
 };
